@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Google Maps Fragment -->
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Modern Search Bar with Shadow -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="12dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="6dp"
+            android:gravity="center_vertical">
+
+            <!-- Search Icon -->
+            <ImageView
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:src="@android:drawable/ic_menu_search"
+                android:padding="12dp"
+                android:tint="#757575"
+                android:contentDescription="Search" />
+
+            <!-- Search Input -->
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Cari bus, rute, atau kelas..."
+                android:textSize="15sp"
+                android:textColorHint="#9E9E9E"
+                android:textColor="#212121"
+                android:background="@android:color/transparent"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
+                android:maxLines="1"
+                android:paddingVertical="12dp"
+                android:paddingEnd="8dp" />
+
+            <!-- Filter Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnFilter"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginEnd="4dp"
+                android:contentDescription="Filter"
+                app:icon="@android:drawable/ic_menu_sort_by_size"
+                app:iconTint="#2196F3"
+                app:iconSize="22dp"
+                app:iconGravity="textStart"
+                app:rippleColor="#E3F2FD" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ===== LEGEND DISEDERHANAKAN: Hanya 2 Track ===== -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="100dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp"
+            android:paddingHorizontal="18dp">
+
+            <!-- Header Legend -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Track Legend"
+                android:textStyle="bold"
+                android:textSize="13sp"
+                android:textColor="#212121"
+                android:layout_marginBottom="12dp" />
+
+            <!-- ===== Planned Route (Ghost) ===== -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
+
+                <!-- Dashed Line Preview - ORANGE -->
+                <LinearLayout
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="4dp"
+                        android:background="#FF6F00" />
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="4dp"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="4dp"
+                        android:background="#FF6F00" />
+
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="4dp"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="4dp"
+                        android:background="#FF6F00" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Planned Route"
+                    android:textSize="12sp"
+                    android:textColor="#616161"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+            <!-- ===== Actual Track (Real) ===== -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Solid Line Preview -->
+                <View
+                    android:layout_width="32dp"
+                    android:layout_height="4dp"
+                    android:background="#2196F3" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Actual Track"
+                    android:textSize="12sp"
+                    android:textColor="#616161"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Floating Action Button - My Location -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="24dp"
+        android:layout_marginBottom="100dp"
+        android:contentDescription="My Location"
+        android:src="@android:drawable/ic_menu_mylocation"
+        app:tint="@android:color/white"
+        app:backgroundTint="#2196F3"
+        app:elevation="6dp"
+        app:fabSize="normal" />
+
+    <!-- Bottom Sheet untuk Detail Bus -->
+    <include layout="@layout/bottom_sheet_bus_info" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

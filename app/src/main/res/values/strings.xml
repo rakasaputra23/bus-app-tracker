@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">Bus Tracker Passenger</string>
+
+    <!-- Main Screen -->
+    <string name="search_hint">Cari bus (rute/plat/kelas)</string>
+    <string name="filter_button">Filter</string>
+
+    <!-- Bus Details -->
+    <string name="label_route">Rute:</string>
+    <string name="label_driver">Supir:</string>
+    <string name="label_passengers">Penumpang:</string>
+    <string name="label_speed">Kecepatan:</string>
+    <string name="label_eta">Estimasi tiba:</string>
+
+    <!-- Filter Options -->
+    <string name="filter_all">Semua Bus</string>
+    <string name="filter_economy">Ekonomi</string>
+    <string name="filter_executive">Eksekutif</string>
+    <string name="filter_available">Bus dengan Kursi Tersedia</string>
+
+    <!-- Status Messages -->
+    <string name="loading_buses">Memuat data bus…</string>
+    <string name="no_buses_found">Tidak ada bus ditemukan</string>
+    <string name="error_loading">Error memuat data</string>
+    <string name="location_permission_required">Izin lokasi diperlukan</string>
+
+    <!-- Bus Status -->
+    <string name="status_active">Aktif</string>
+    <string name="status_stopped">Berhenti</string>
+    <string name="status_offline">Offline</string>
+
+    <!-- Occupancy -->
+    <string name="seats_available">%d kursi tersedia</string>
+    <string name="seats_full">Penuh</string>
+    <string name="occupancy_format">%d/%d</string>
+
+    <!-- Speed -->
+    <string name="speed_format">%d km/jam</string>
+    <string name="bus_stopped">Bus berhenti</string>
+
+    <!-- ETA -->
+    <string name="eta_minutes">%d menit</string>
+    <string name="eta_hours">%d jam %d menit</string>
+    <string name="eta_less_than_minute">Kurang dari 1 menit</string>
+    <string name="location_unavailable">Lokasi tidak tersedia</string>
+
+    <!-- Toast Messages -->
+    <string name="toast_buses_loaded">%d bus dimuat</string>
+    <string name="toast_permission_denied">Izin lokasi ditolak</string>
+
+    <!-- Dialog -->
+    <string name="dialog_filter_title">Filter Bus</string>
+</resources>
