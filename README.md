@@ -92,6 +92,4 @@ Ketika pengguna menekan salah satu ikon bus di peta, akan ditampilkan informasi 
 
 **📦 Version 1.0.0** | **👥 Modul Android Penumpang (Publik)**
 
-*Dibuat dengan ❤️ untuk memudahkan perjalanan masyarakat*
-
 </div>
