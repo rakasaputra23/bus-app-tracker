@@ -28,51 +28,84 @@
             android:padding="6dp"
             android:gravity="center_vertical">
 
-            <!-- Search Icon -->
-            <ImageView
+            <!-- Search Icon Circle -->
+            <LinearLayout
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:src="@android:drawable/ic_menu_search"
-                android:padding="12dp"
-                android:tint="#757575"
-                android:contentDescription="Search" />
+                android:background="@drawable/bg_search_icon"
+                android:gravity="center"
+                android:layout_marginStart="2dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:tint="#757575"
+                    android:contentDescription="Search" />
+
+            </LinearLayout>
 
             <!-- Search Input -->
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/searchInput"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Cari bus, rute, atau kelas..."
-                android:textSize="15sp"
-                android:textColorHint="#9E9E9E"
-                android:textColor="#212121"
-                android:background="@android:color/transparent"
-                android:inputType="text"
-                android:imeOptions="actionSearch"
-                android:maxLines="1"
-                android:paddingVertical="12dp"
-                android:paddingEnd="8dp" />
+                android:orientation="vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="8dp">
 
-            <!-- Filter Button -->
-            <com.google.android.material.button.MaterialButton
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/searchInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Cari Jurusan..."
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColorHint="#9E9E9E"
+                    android:textColor="#212121"
+                    android:background="@android:color/transparent"
+                    android:inputType="text"
+                    android:imeOptions="actionSearch"
+                    android:maxLines="1"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Contoh: Surabaya, Madiun"
+                    android:textSize="10sp"
+                    android:textColor="#BDBDBD"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="8dp" />
+
+            </LinearLayout>
+
+            <!-- Filter Button Circle (Blue) -->
+            <LinearLayout
                 android:id="@+id/btnFilter"
-                style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
-                android:layout_marginEnd="4dp"
-                android:contentDescription="Filter"
-                app:icon="@android:drawable/ic_menu_sort_by_size"
-                app:iconTint="#2196F3"
-                app:iconSize="22dp"
-                app:iconGravity="textStart"
-                app:rippleColor="#E3F2FD" />
+                android:background="@drawable/bg_filter_button"
+                android:gravity="center"
+                android:layout_marginEnd="2dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    android:tint="#2196F3"
+                    android:contentDescription="Filter" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- ===== LEGEND DISEDERHANAKAN: Hanya 2 Track ===== -->
+    <!-- ===== LEGEND LENGKAP: 3 Jenis Garis ===== -->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -94,13 +127,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Track Legend"
+                android:text="Map Legend"
                 android:textStyle="bold"
                 android:textSize="13sp"
                 android:textColor="#212121"
                 android:layout_marginBottom="12dp" />
 
-            <!-- ===== Planned Route (Ghost) ===== -->
+            <!-- ===== 1. Planned Route (Orange Dashed) ===== -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -110,7 +143,7 @@
 
                 <!-- Dashed Line Preview - ORANGE -->
                 <LinearLayout
-                    android:layout_width="32dp"
+                    android:layout_width="36dp"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
@@ -146,22 +179,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Planned Route"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
                     android:textColor="#616161"
                     android:layout_marginStart="10dp" />
 
             </LinearLayout>
 
-            <!-- ===== Actual Track (Real) ===== -->
+            <!-- ===== 2. Actual Track (Blue Solid) ===== -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="10dp">
 
-                <!-- Solid Line Preview -->
+                <!-- Solid Line Preview - BLUE -->
                 <View
-                    android:layout_width="32dp"
+                    android:layout_width="36dp"
                     android:layout_height="4dp"
                     android:background="#2196F3" />
 
@@ -169,7 +203,72 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text=" Actual Track"
-                    android:textSize="12sp"
+                    android:textSize="11sp"
+                    android:textColor="#616161"
+                    android:layout_marginStart="10dp" />
+
+            </LinearLayout>
+
+            <!-- ===== 3. User Distance (Gray Dotted) ⭐ BARU ===== -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <!-- Dotted Line Preview - GRAY -->
+                <LinearLayout
+                    android:layout_width="36dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="#9E9E9E" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="#9E9E9E" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="#9E9E9E" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@android:color/transparent" />
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="4dp"
+                        android:background="@drawable/bg_circle"
+                        android:backgroundTint="#9E9E9E" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Your Distance"
+                    android:textSize="11sp"
                     android:textColor="#616161"
                     android:layout_marginStart="10dp" />
 

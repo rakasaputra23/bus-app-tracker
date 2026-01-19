@@ -3,8 +3,13 @@ package com.example.bustrackerpassenger.models;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Bus Model - Updated untuk sync dengan Firebase dari Kru App
+ * ⭐ ADDED: namaBus field
+ */
 public class Bus {
     private String busId;
+    private String namaBus;           // ⭐ FIELD BARU
     private String plateNumber;
     private String busClass;
     private String route;
@@ -12,9 +17,13 @@ public class Bus {
     private int currentPassengers;
     private String driver;
     private String status;
+    private String kondisi;           // ⭐ FIELD BARU (lancar/macet/mogok)
+    private String kondisiUpdate;     // ⭐ FIELD BARU
+    private Double totalDistance;     // ⭐ FIELD BARU
     private BusLocation location;
     private List<TrackPoint> track;
-    private String encodedRoute; // ===== TAMBAHAN BARU untuk Planned Route =====
+    private String encodedRoute;      // routePolyline dari Firebase
+    private ETA eta;                  // ⭐ FIELD BARU
 
     // Empty constructor - WAJIB untuk Firebase
     public Bus() {
@@ -22,10 +31,11 @@ public class Bus {
     }
 
     // Constructor dengan parameter
-    public Bus(String busId, String plateNumber, String busClass, String route,
-               int capacity, int currentPassengers, String driver,
+    public Bus(String busId, String namaBus, String plateNumber, String busClass,
+               String route, int capacity, int currentPassengers, String driver,
                String status, BusLocation location) {
         this.busId = busId;
+        this.namaBus = namaBus;
         this.plateNumber = plateNumber;
         this.busClass = busClass;
         this.route = route;
@@ -37,13 +47,22 @@ public class Bus {
         this.track = new ArrayList<>();
     }
 
-    // Getters and Setters
+    // ===== GETTERS & SETTERS =====
+
     public String getBusId() {
         return busId;
     }
 
     public void setBusId(String busId) {
         this.busId = busId;
+    }
+
+    public String getNamaBus() {
+        return namaBus;
+    }
+
+    public void setNamaBus(String namaBus) {
+        this.namaBus = namaBus;
     }
 
     public String getPlateNumber() {
@@ -102,6 +121,30 @@ public class Bus {
         this.status = status;
     }
 
+    public String getKondisi() {
+        return kondisi;
+    }
+
+    public void setKondisi(String kondisi) {
+        this.kondisi = kondisi;
+    }
+
+    public String getKondisiUpdate() {
+        return kondisiUpdate;
+    }
+
+    public void setKondisiUpdate(String kondisiUpdate) {
+        this.kondisiUpdate = kondisiUpdate;
+    }
+
+    public Double getTotalDistance() {
+        return totalDistance;
+    }
+
+    public void setTotalDistance(Double totalDistance) {
+        this.totalDistance = totalDistance;
+    }
+
     public BusLocation getLocation() {
         return location;
     }
@@ -118,7 +161,6 @@ public class Bus {
         this.track = track;
     }
 
-    // ===== GETTER DAN SETTER BARU untuk Encoded Route =====
     public String getEncodedRoute() {
         return encodedRoute;
     }
@@ -127,7 +169,16 @@ public class Bus {
         this.encodedRoute = encodedRoute;
     }
 
-    // Helper methods
+    public ETA getEta() {
+        return eta;
+    }
+
+    public void setEta(ETA eta) {
+        this.eta = eta;
+    }
+
+    // ===== HELPER METHODS =====
+
     public int getAvailableSeats() {
         return capacity - currentPassengers;
     }
@@ -136,7 +187,21 @@ public class Bus {
         return currentPassengers + "/" + capacity;
     }
 
-    // Inner class untuk Track Point
+    /**
+     * Get display name (prioritas namaBus, fallback ke plateNumber)
+     */
+    public String getDisplayName() {
+        if (namaBus != null && !namaBus.isEmpty()) {
+            return namaBus;
+        }
+        return plateNumber != null ? plateNumber : "Unknown";
+    }
+
+    // ===== INNER CLASSES =====
+
+    /**
+     * Track Point untuk actual track
+     */
     public static class TrackPoint {
         private double lat;
         private double lng;
@@ -163,6 +228,48 @@ public class Bus {
 
         public void setLng(double lng) {
             this.lng = lng;
+        }
+    }
+
+    /**
+     * ETA Information
+     */
+    public static class ETA {
+        private Double remainingDistance;
+        private Integer remainingTime;
+        private String estimatedArrival;
+
+        public ETA() {
+        }
+
+        public ETA(Double remainingDistance, Integer remainingTime, String estimatedArrival) {
+            this.remainingDistance = remainingDistance;
+            this.remainingTime = remainingTime;
+            this.estimatedArrival = estimatedArrival;
+        }
+
+        public Double getRemainingDistance() {
+            return remainingDistance;
+        }
+
+        public void setRemainingDistance(Double remainingDistance) {
+            this.remainingDistance = remainingDistance;
+        }
+
+        public Integer getRemainingTime() {
+            return remainingTime;
+        }
+
+        public void setRemainingTime(Integer remainingTime) {
+            this.remainingTime = remainingTime;
+        }
+
+        public String getEstimatedArrival() {
+            return estimatedArrival;
+        }
+
+        public void setEstimatedArrival(String estimatedArrival) {
+            this.estimatedArrival = estimatedArrival;
         }
     }
 }
